@@ -117,27 +117,20 @@ extension Sort {
         guard array.count > 1 else { return array }
         
         let piv: T = array.first!
-        var low: [T] = []
-        var high: [T] = []
+        var arr1: [T] = []
+        var arr2: [T] = []
         
         for i in 1...(array.count-1) {
-            if array[i] > piv {
-                high.append(array[i])
+            if compare(piv, array[i], order) {
+                arr2.append(array[i])
             } else {
-                low.append(array[i])
+                arr1.append(array[i])
             }
         }
         
-        if order == .ascending {
-            var tmp = quickSort(low)
-            tmp.append(piv)
-            tmp.append(contentsOf: high)
-            return tmp
-        } else {
-            var tmp = quickSort(high)
-            tmp.append(piv)
-            tmp.append(contentsOf: low)
-            return tmp
-        }
+        var tmp = quickSort(arr1)
+        tmp.append(piv)
+        tmp.append(contentsOf: arr2)
+        return tmp
     }
 }
