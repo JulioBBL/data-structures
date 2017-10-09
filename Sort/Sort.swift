@@ -6,7 +6,7 @@ internal enum SortOrder {
 }
 
 internal final class Sort {
-    private static func compare<T: Comparable>(_ v1: T, _ v2: T, _ order: SortOrder) -> Bool {
+    private static func compare<T: Comparable>(_ v1: T, _ v2: T, _ order: SortOrder = .ascending) -> Bool {
         if order == .ascending {
             return v1 < v2
         } else {
@@ -18,7 +18,7 @@ internal final class Sort {
 // MARK: - SELECTION SORT
 
 extension Sort {
-    static func selectionSort<T: Comparable>(array: [T], order: SortOrder) -> [T] {
+    static func selectionSort<T: Comparable>(array: [T], order: SortOrder = .ascending) -> [T] {
         guard !array.isEmpty else { return [] }
         var retArray = array
         
@@ -39,7 +39,7 @@ extension Sort {
 // MARK: - INSERTION SORT
 
 extension Sort {
-    static func insertionSort<T: Comparable>(array: [T], order: SortOrder) -> [T] {
+    static func insertionSort<T: Comparable>(array: [T], order: SortOrder = .ascending) -> [T] {
         guard !array.isEmpty else { return [] }
         var retArray = array
         
@@ -56,7 +56,7 @@ extension Sort {
 // MARK: - BUBBLE SORT
 
 extension Sort {
-    static func bubbleSort<T: Comparable>(array: [T], order: SortOrder) -> [T] {
+    static func bubbleSort<T: Comparable>(array: [T], order: SortOrder = .ascending) -> [T] {
         guard !array.isEmpty else { return [] }
         var retArray = array
         
@@ -74,7 +74,7 @@ extension Sort {
 // MARK: - MERGE SORT
 
 extension Sort {
-    private static func merge<T: Comparable>(_ arr1: [T], _ arr2: [T], order: SortOrder) -> [T] {
+    private static func merge<T: Comparable>(_ arr1: [T], _ arr2: [T], order: SortOrder = .ascending) -> [T] {
         var newArray = [T]()
         var i1 = 0
         var i2 = 0
@@ -95,7 +95,7 @@ extension Sort {
         return newArray
     }
     
-    private static func mergeSort<T: Comparable>(array: ArraySlice<T>, order: SortOrder) -> [T] {
+    private static func mergeSort<T: Comparable>(array: ArraySlice<T>, order: SortOrder = .ascending) -> [T] {
         guard array.count > 1 else { return [T](array) }
         let middle = (array.startIndex + array.endIndex) / 2
         let side1 = mergeSort(array: array[..<middle], order: order)
